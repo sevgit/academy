@@ -5,8 +5,12 @@ import React from 'react';
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import expressJWT from 'express-jwt'
+import jwt from 'jsonwebtoken';
+
 import path from 'path';
 import { renderToString } from 'react-dom/server';
+
 
 mongoose.connect('mongodb://localhost/academyauth');
 
@@ -26,7 +30,7 @@ const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 const server = express();
 
 server.use(bodyParser.urlencoded({extended:true}));
-
+server.use(expressJWT({ secret: 'randomsecret'}).unless({ path: ['/login', '/register', '/']}));
 
 
 server.post('/register', function(req, res) {
@@ -54,7 +58,10 @@ server.post('/login', function(req, res) {
     } else {
       if (req.body.password === user.password) {
         console.log("LOGGED");
-        res.redirect('/');
+
+        var token = jwt.sign({username: req.body.email}, 'randomsecret');
+        res.status(200).json({token});
+        //res.redirect('/dashboard');
       }
       else {
         console.log("INCORRECT PASSWORD");

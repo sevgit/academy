@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import logo from './react.svg';
+
 import './Home.css';
 
-class Login extends Component {
+class Dashboard extends Component {
   render() {
     return (
       <div className="Home">
         <div className="Home-header">
-          <h2>Login View</h2>
-          <ul className="Home-resources">
+          
+          <h2>DASHBOARD</h2>
+        </div>
+       
+        <ul className="Home-resources">
             <li>
               <a href="/">Index of it all</a>
             </li>
@@ -23,18 +26,9 @@ class Login extends Component {
               <a href="/dashboard">Dashboard</a>
             </li>
         </ul>
-        </div>
-        <form method="post">
-          
-          <span>Email:</span>
-          <input type="email" name="email" required /><br />
-          <span>Contraseña:</span>
-          <input type="password" name="password" required /><br />
-          <input type="submit" />
-        </form>
       </div>
     );
   }
 }
 
-export default Login;
+export default Dashboard;
