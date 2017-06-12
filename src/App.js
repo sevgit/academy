@@ -6,6 +6,7 @@ import Login from './Views/Login/Index';
 import Register from './Views/Register/Index';
 import Dashboard from './Views/Dashboard/Index';
 
+
 import './App.css';
 
 const App = () => (
